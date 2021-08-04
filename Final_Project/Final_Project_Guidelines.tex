@@ -1,0 +1,112 @@
+\documentclass[12pt,onecolumn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          				PACKAGES  				              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin=1.5in]{geometry}
+\usepackage{authblk}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{placeins}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{a4wide,graphicx,color}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{color,soul}
+\usepackage{threeparttable}
+\usepackage[capposition=top]{floatrow}
+\usepackage[labelsep=period]{caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage[bottom]{footmisc}
+\setlength\footnotemargin{5pt}
+\usepackage{longtable}
+\usepackage{chronosys}
+\catcode`\@=11
+\def\chron@selectmonth#1{\ifcase#1\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi}
+
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+%% markup commands for code/software
+\let\code=\texttt
+\let\pkg=\textbf
+\let\proglang=\textsf
+\newcommand{\file}[1]{`\code{#1}'}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\urlstyle{same}
+
+%% paragraph formatting
+\renewcommand{\baselinestretch}{1}
+
+%% \usepackage{Sweave} is essentially
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ae,fancyvrb}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+
+% Defines columns for tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{bbm}
+\usepackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     			TITLE, AUTHORS AND DATE    			  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Final Project Guidelines}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Econ 4676: Big Data and Machine Learning for Applied Economics}
+\author{{\bf Due Date}: December 10 at 5:00 pm}
+\date{}
+%\href{https://github.com/ECON-4676-UNIANDES}{ECON-4676}}
+
+\begin{document}
+\maketitle
+
+%\section{}
+
+The purpose of the Final Project is for you to culminate the learning achieved in the course by describing your understanding and application of knowledge 
+
+
+Focus of the Final Paper
+
+Select a topic of interest in organizational behavior that you would like to explore with additional research (must use at least five references).
+
+
+
+There are two possibilities for the research paper: (a) replication of an approved urban paper, or (b) an empirical paper with original research.
+
+define a topic and outline an action plan. It will have three stages: 
+
+\begin{enumerate}
+\item First submission. This submission should be a brief statement of what you plan to do.  I expect that you provide sufficient background so that the reader can understand the problem/research question you want to address. It should include an outline of how you plan to accomplish it, including the data you have/or plan to acquire, the methods, and any other relevant information you deem necessary.
+It should be at most two pages in length. I'll provide feedback and will ask for changes if needed. This is worth 5\% of your final grade.
+\end{enumerate}
+
+assignment is to write a 10-15 page project proposal. The aim of a proposal is to define a topic and outline a research plan. While many proposals promise that multiple papers will result, you will focus on a project that will produce a single paper. When you have completed your proposal, you will possess a blueprint for a research paper. Then "all" that remains to be done is the execution...
+
+
+\end{document}
