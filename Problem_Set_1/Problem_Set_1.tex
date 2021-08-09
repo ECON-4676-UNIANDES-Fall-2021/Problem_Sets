@@ -79,9 +79,11 @@
 }
 \makeatother
 \subtitle{Econ 4676: Big Data and Machine Learning for Applied Economics}
-\author{{\bf Due Date}: April 24 at 11:00 am}
-\date{}
-%\href{https://github.com/ECON-4676-UNIANDES}{ECON-4676}}
+\author{{\bf Due Date}: August 24 at 1:00 pm}
+\date{The repo link to create your submission is \url{https://classroom.github.com/g/2zlAqMNF}}
+
+
+
 
 \begin{document}
 \maketitle
@@ -156,27 +158,14 @@
     \end{enumerate}
   \end{enumerate}
         
-\item In many sub fields of economics, like finance, it is common that the tails of the noise distribution are much heavier than the standard Gaussian tails. One way to model this is to use a $t-distribution$. Consider then the same  model as exercise 1: $y_i = \alpha +\beta x_i +\epsilon, i=1,...,N,$, i.e., a model with a constant and a single regressor. But now $\epsilon / \sigma \sim_{iid} t_v$, and $E(X\epsilon)=0$ and $v$ are the degrees of freedom
-  \begin{enumerate}
-    \item Write down the log-likelihood, using the explicit formula for the density of the $t$ distribution
-    \item Find the first derivatives of this log-likelihood with respect to the parameters $\alpha$, $\beta$, $\sigma^2$ and $v$
-    \item Assume that $\sigma^2$ and $v$ are known, can you solve for the maximum likelihood estimator of $\alpha$ and $\beta$? Do they match the least-square estimators? If not, why and how do they differ?
-    \item Using the software of your choice, write a function that takes as arguments some data (y,x) and outputs the MLE estimates from a $t-distribution$.
-    \item Simulate some data that follow the model described above, and answer the following questions:
-    \begin{enumerate}
-      \item How well does the MLE recovers the parameters?
-      \item Does it get better as N grows?
-      \item What about when the variance of X increases?
-      \item How does it compares relative to a naive OLS estimator?
-    
-    \end{enumerate}
-  \end{enumerate}  
+
+
 
   
 
 \end{enumerate}
 
-\pagebreak
+
 
 \section{Empirical Problems}
 
@@ -190,45 +179,35 @@ These parts also involve a lot of coding. Don't forget to upload everything to y
 
 This part of the problem set involves data on housing prices in Colombia. The data was provided by \url{https://www.properati.com.co}. It contains information on listing prices as well as features of the properties on sale. The data set is called \texttt{co\_properties.csv} and you can download it from \href{https://www.dropbox.com/s/7za955mzf7b7qti/co_properties.zip?dl=0}{here}. 
 
-We will explore the data set and try to explain and predict the asking price based on OLS and the available data.
+
+In this problem set, we will focus only on houses and apartments on sale in Bogotá D.C., Cali, and Medellín. I care only about these types of operations, properties, and cities. You are welcome to use all the data, but results should be relevant for these subgroups.
 
 \begin{enumerate}
-  \item In this problem set we will focus only on houses and apartments that are on sale in Bogotá D.C., Cali, and Medellín. I care only about these type of operation, properties, and cities. You are welcome to use all the data set, but results should be relevant for these subgroups.
-  \item The data set include multiple variables that can help explain the price of a property.  Build a descriptive analysis of these variables. At a minimum, you should include a descriptive statistics table for the potential variables you can use to explain prices. Note that there are many observations with missing data. I leave it to you to find a way to handle these missing data. Don't forget to discuss your decisions and the data. Take this section as an opportunity to present a compelling narrative to justify or defend your data choices. Do not present it as a ``dry'' list of ingredients.
+  
+  \item The data set include multiple variables that can help explain the price of a property.  Choose the most relevant and perform a descriptive analysis of these variables. At a minimum, you should include a descriptive statistics table. Note that there are many observations with missing data. I leave it to you to find a way to handle these missing data. Don't forget to discuss your decisions and the data. Take this section as an opportunity to present a compelling narrative to justify or defend your data choices. Do not present it as a ``dry'' list of ingredients.
   \item Estimate a linear model using OLS of the form
   \begin{equation}
     Y = X\beta +u
   \end{equation}
 
-  Where $Y$ is the asking price and X  is a matrix with the variables that you chose to explain the price. I leave to you to decide which variables to include. Please discuss your decisions and your results, including a discussion of the fit.
-  \item Compute the leverage statistic for each observation. Are there any "outliers", i.e. observations with high leverage driving the results.
-  \item One difficulty with linear models is that the interpretation of the estimated parameters is intimately connected with the units of measurement of the included variables. However,  it is often convenient to present estimates of semi-elasticities housing prices, or even elasticities. This changes the functional form and the sample fit. In this part of the problem set, I want you to explore the different functional forms and their fit. You can try one by one, or you can estimate Box-Cox forms or anything you deem sensible.
-  \item Once you've chosen your "preferred functional" form for the equation, you can also transform your independent variables by adding polynomials and interactions. At this point, explore different transformations of your independent variables. There are two purposes here (1) explore heterogeneity in the sample (2) improve the in-sample fit. You should keep this in mind when discussing your results. One of those models should include the linear and the square term of rooms, compute the number of rooms that maximizes the expected price. Don't forget to calculate also the standard errors. You should discuss the relevance of this result, taking into account the number of rooms observed in the sample.
-  \item Estimate the preferred model for each of the three cities separately, compare it to the model that consolidates the three cities. Is there a way that you can recover the parameter of rooms of the consolidated sample by   combining  the parameters obtained in the separated samples. 
-  \item Can you come up with a single model that reproduces the  estimates of the single regression in one. Comment on the standard errors.
-  \item Estimate your preferred model using the \texttt{QR} decomposition. Compare these results to the traditional \texttt{out of the box} estimation methods results (for example, in \texttt{R} would be comparing it to \texttt{lm}, \texttt{Stata} would be to \texttt{reg}.
+  Where $Y$ is the asking price and X  is a matrix with the variables you chose to explain the price. I leave it to you to decide which variables to include. Discuss your decisions and results, including a discussion of the fit.
+  \item Compute the leverage statistic for each observation. Are there any outliers, i.e., observations with high leverage driving the results?
+  \item One difficulty with linear models is that the interpretation of the estimated parameters is intimately connected with the units of measurement of the included variables. However,  it is often convenient to present estimates of semi-elasticities housing prices or even elasticities. Changes in the functional form alter the interpretation and the sample fit. In this part of the problem set, you should explore different functional forms and their fit. You can try one by one, or you can estimate Box-Cox forms or anything you deem sensible.
+  \item Once you've chosen your ``preferred functional'' form for the equation, you can also transform your independent variables by adding polynomials and interactions. At this point, explore different transformations of your independent variables. There are two purposes here (1) explore heterogeneity in the sample (2) improve the in-sample fit. You should keep this in mind when discussing your results. One of those models should include the linear and the square term of {\it number of rooms}, compute the number of rooms that maximizes the expected price. Don't forget to calculate also the standard errors. You should discuss the relevance of this result, taking into account the number of rooms observed in the sample.
+  \item Estimate your preferred model using the \texttt{QR} decomposition. Compare these results to the traditional \texttt{out of the box} estimation methods results (for example, in \texttt{R} would be comparing it to \texttt{lm}, \texttt{Stata} would be to \texttt{reg}.)
+  \item Estimate the preferred model for each of the three cities separately, 
+  \begin{enumerate}
+    \item Compare it to the model that consolidates the three cities. Show this in a 4 column table. Discuss
+    \item Is there a way to recover the linear parameter for  {\it number of rooms} of the consolidated sample by combining the parameters obtained in the separated samples for each city? 
+    \item Can you come up with a single equation model that shows the coefficients for {\it number of rooms} for each city? Comment on the size of the coefficients and the standard errors. Are these coefficients the same that you obtained in \texttt{(a)}?
+  \end{enumerate}
+  
 
-\item How well does your preferred model at predicting asking prices in Barranquilla? Comment in terms of prediction error. If it performs well, argument why, and if not, explain.
+\item How well does your preferred model at predicting asking prices in Barranquilla? Comment in terms of prediction error. If it performs well, argue why, and if not, explain.
 
-\item Are there some other variables missing, e.g., amenities, that could potentially help? How could you obtain these variables and add them to this data set? Here I expect a thoughtful discussion, but if you want to add data you are welcomed and I'll reward you with a bonus in your grade. 
+\item Are there some other variables missing, e.g., amenities, that could potentially help? How could you obtain these variables and add them to this data set? Here I expect a thoughtful discussion, but if you want to add data, I'll reward you with a bonus on your grade. 
 
   
-\end{enumerate}
-
-\section{Pedes in terra ad sidera visus}
-
-Each student in the class has an account in AWS educate that you can access with your \texttt{@uniandes.edu.co} account.
-
-\begin{enumerate}
-  \item Set up an \texttt{EC2} instance
-  \item Install the software of your choice, could be any of these
-  \begin{enumerate}
-    \item \texttt{R} with \texttt{RStudio}
-    \item \texttt{JupyterLab}
-    \item \texttt{Python}
-  \end{enumerate}
-
-Attach screen shots of the virtual machine running.   
 \end{enumerate}
 
 \end{document}

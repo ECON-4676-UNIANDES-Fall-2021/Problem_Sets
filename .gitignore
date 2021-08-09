@@ -1,6 +1,7 @@
 ## Ignore certain files and folders
 
-Problem_Set1/data/*
+Problem_Set_1/data/*
+Problem_Set_2/*
 
 ### macOS ###
 # General
