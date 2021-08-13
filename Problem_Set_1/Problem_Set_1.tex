@@ -121,11 +121,11 @@
   \end{align}
   where $M_{\iota}$ is the matrix that takes deviation from the sample mean
 
-  \item Given the model $Y = X \beta_0 + \epsilon$ where $X$ is $n \times k$. Let also $\hat \beta$ denote the OLS estimator and $R^2_k$ denote the  $R^2$ (centered), where the subscript $k$ means a model with $k$ explanatory variables.
+  \item Given the model $Y = X \beta + \epsilon$ where $X$ is $n \times k$. Let also $\hat \beta$ denote the OLS estimator and $R^2_k$ denote the  $R^2$ (centered), where the subscript $k$ means a model with $k$ explanatory variables.
   \begin{enumerate}
     \item Show that 
     \begin{align}
-      R^2_k = \sum_{k=1}^K \hat \beta_k \frac{\sum_{i=1}^n (X_{ik}-\bar{X}_k)Y_i}{\sum_{i=1}^n (Y_i-\bar Y)^2}
+      R^2_K = \sum_{k=1}^K \hat \beta_k \frac{\sum_{i=1}^n (X_{ik}-\bar{X}_k)Y_i}{\sum_{i=1}^n (Y_i-\bar Y)^2}
     \end{align}
     where $\hat \beta_k$ is the $k-th$ element of $\hat \beta$, $X_{ik}$ is the $i-th$ element of the $k-th$ explanatory variable, $Y_i$ is the $i-th$ element of Y, $\bar X_k = \sum_{i=1}^n X_{ik}/n$, and $\bar Y = \sum_i^n Y_i/n$
     \item Suppose that you delete an explanatory variable from the model (so that the model has $K-1$ explanatory variables) and obtain $R^2_{K-1}$, show that $R^2_{K}>R^2_{K-1}$
@@ -171,7 +171,7 @@
 
 The main objective of these sections is to apply the concepts we learned using ``real" world data. With these, I also expect that you sharpen your data collection and wrangling skills. Finally, you should pay attention to your writing.
 
-I encourage you to turn each of the following two parts of the problem set in a way that resembles paper. As such, I expect graphs, tables, and writing to be as neat as possible. You can write it in Spanish or English, either language is fine. For students in the Ph.D., it would be a good practice to do it in English.
+I encourage you to turn each of the following two parts of the problem set in a way that resembles a paper. As such, I expect graphs, tables and writing to be as neat as possible. You can write it in Spanish or English, either language is fine. For students in the Ph.D., it would be a good practice to do it in English.
 
 These parts also involve a lot of coding. Don't forget to upload everything to your repository and follow the template. 
 
