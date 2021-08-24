@@ -1,0 +1,222 @@
+\documentclass[12pt,onecolumn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          				PACKAGES  				              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin=1.5in]{geometry}
+\usepackage{authblk}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{placeins}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{a4wide,graphicx,color}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{color,soul}
+\usepackage{threeparttable}
+\usepackage[capposition=top]{floatrow}
+\usepackage[labelsep=period]{caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage[bottom]{footmisc}
+\setlength\footnotemargin{5pt}
+\usepackage{longtable}
+\usepackage{chronosys}
+\catcode`\@=11
+\def\chron@selectmonth#1{\ifcase#1\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi}
+
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+%% markup commands for code/software
+\let\code=\texttt
+\let\pkg=\textbf
+\let\proglang=\textsf
+\newcommand{\file}[1]{`\code{#1}'}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\urlstyle{same}
+
+%% paragraph formatting
+\renewcommand{\baselinestretch}{1}
+
+%% \usepackage{Sweave} is essentially
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ae,fancyvrb}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+
+% Defines columns for tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{bbm}
+\usepackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     			TITLE, AUTHORS AND DATE    			  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Problem Set 2}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Econ 4676: Big Data and Machine Learning for Applied Economics}
+\author{{\bf Due Date}: September 9 at 1:00 pm}
+\date{}
+\date{The repo link to create your submission is \url{https://classroom.github.com/g/vh-kPWEv}}
+
+\begin{document}
+\maketitle
+
+\section{Theory Exercises: Bayesian Econometrics}
+
+\begin{enumerate}
+
+\item Fun with conditional independence.  Suppose that $X\in \{1,...,K\} $ is a discrete random variable, and let $\epsilon_1$ and $\epsilon_2$ be realizations of two other random variables $E_1$ and $E_2$, such that $E_1=\epsilon_1$ and $E_2=\epsilon_2$. We want to calculate the flowing probability: $P(X|\epsilon_1,\epsilon_2)= P(X=1|\epsilon_1,\epsilon_2)\dots  P(X=K|\epsilon_1,\epsilon_2)$. (Hint: use Bayes rule.)
+  \begin{enumerate}
+  \item Which of the following sets of numbers are enough for the calculation?
+  \begin{enumerate}
+    \item $P(\epsilon_1,\epsilon_2)$, $P(X)$, $P(\epsilon_1|X), P(\epsilon_2|X)$
+    \item $P(\epsilon_1,\epsilon_2)$, $P(X)$, $P(\epsilon_1,\epsilon_2|X)$ 
+    \item $P(\epsilon_1|X)$, $P(\epsilon_2|X)$, $P(X)$
+    \end{enumerate}
+    \item Now  assume $E_1 \perp E_2|X$ (i.e., $E_1$ and $E_2$ are conditionally independent given X). Which of the above 3 sets are enough now?
+  \end{enumerate}
+
+
+
+  \item Let's consider the following linear regression model with two regressors 
+  \begin{align}\label{eq:model}
+  y_i = \beta_1 x_{i,1} +\beta_2 x_{i,2} + u_i \,\, \sim_{iid} N(0,1)
+  \end{align}
+  which we can write in matrix form as 
+  \begin{align}
+  Y= X\beta + U
+  \end{align}
+  where $Y=[y_1,\dots,Y_N]$ a vector $N\times1$, accordingly X is a matrix of dimension $N\times2$, U is $N\times1$ and $\beta$ a $2\times1$ vector. Under this setting, the likelihood function is of the form
+  
+  \begin{align}
+  p(Y|X,\beta) = (2\pi)^{-N/2}exp \left( -\frac{1}{2} (Y-X\beta)'(Y-X\beta) \right) 
+  \end{align}
+  Assume the prior distribution of the form 
+  \begin{align}
+  p(\beta)\sim N(0_{2\times1},\tau^2I_2)
+  \end{align}
+  where $I_2$ is a $2\times2$ identity matrix
+  \begin{enumerate}
+    \item Suppose that a probability density of the random vector $\theta$ is proportional to
+    \begin{align}
+    exp \left( -\frac{1}{2} (\theta'A\theta+B'\theta+\theta'B)) \right) 
+    \end{align}
+    where A is a $k\times k$ matrix and B is a $k\times 1$ vector. Show that $\theta$ follows a multivariate normal distribution with
+    $E(\theta)= - A^{-1}B'$ and $Var(\theta)=A^{-1}$
+    \item  Using the result in (a) show that
+    \begin{align}
+    \beta|Y,X \sim N(m,V)
+    \end{align}
+    with mean and covariance
+      \begin{align}
+      m=(X'X + \tau^{-2} I_2)^{-1}X'Y \\ 
+      V=(X'X + \tau^{-2} I_2)^{-1}
+      \end{align}
+  
+  \item Derive the following conditional posterior distribution, $p(\beta_1|Y,X,\beta_1$ and $p(\beta_2|Y,X,\beta_1)$. Hing: Conditioned on $\beta_1$ we treat $\beta_1$ as known quantity. This means that we can transform the original model as
+  \begin{align}
+    \underset{\tilde{y}_{i}}{\underbrace{y_{i}-\beta_{1}x_{i,1}}}=\underset{\tilde{\beta}_{2}}{\underbrace{\beta_{2}}}\underset{\tilde{x}_{i}}{\underbrace{x_{i,2}}}+u_{i}\iff\tilde{y}_{i}=\tilde{\beta}\tilde{x}_{i}+u
+  \end{align}
+  \item Simulate a data set from the linear regression model with two regressors, Equation \eqref{eq:model}. Let $x_1,i\sim_{iid}N(0,1)$, $x_2,i\sim_{iid}N(0,3)$, $\beta_1=1$, $\beta_2=2$ , $N =200$ and $\tau= 4$
+  \item Now code up a direct sampler that generates $N$ draws from $N(m,V)$ where $m$ and $V$ are those defined above. Compute a Monte Carlo approximation of $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$ using the generated draws.
+  \item Now code up a Gibbs sampler that generates N draws from the following algorithm. Enter the following iterations with $\beta^{0}_1=1$ and $s=1$
+  \begin{enumerate}
+    \item Draw $\beta^s_2$ from the distribution with a density $p(\beta_2|Y, X, \beta^{s-1}_1)$
+  \item Draw $\beta^s_1$ from the distribution with a density $p(\beta_1|Y, X, \beta^s_2)$.
+  \item Store $(\beta^s_1,\beta^s_2$. Go to step 1 with $s = s+1$ if $s < N$. Otherwise, ends the program.  
+  \end{enumerate}
+  At the end of this algorithm, you have a bunch of draws $[\beta^s_1,\beta^s_2]^N_{s=1}$. Compute a Monte Carlo approximation of E[ $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$  using generated draws. Let $N = 5,000$.
+\item  Compare approximated posterior moments of $\beta$ you obtained from the direct sampler (e) and the Gibbs sampler (f). Discuss the results.
+\item  Does your result change if you set $\beta^0_1= 20$ or$\beta^0_1= -20$ in (f)? That is, is the Gibbs sampler robust to the initial starting point in this exercise?
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+
+
+\section{Empirical Problems}
+
+The main objective of these sections is to apply the concepts we learned using ``real" world data. With these, I also expect that you sharpen your data collection and wrangling skills. Finally, you should pay attention to your writing.
+
+I encourage you to turn each of the following section of the problem set in a way that resembles a paper. As such, I expect graphs, tables, and writing to be as neat as possible. You can write it in Spanish or English, either language is fine. For students in the Ph.D., it would be a good practice to do it in English.
+
+These parts also involve a lot of coding. Don't forget to upload everything to your repository and follow the template repository. 
+
+
+\subsection*{Reverend Bayes meets Web Scraping}
+
+Today we will explore immigrants' salaries in the U.S. We will use data from the H1B Salary Database (\url{https://h1bdata.info/}). H1B visas are visas that ``allow U.S. employers to temporarily employ foreign workers in specialty occupations'' \href{https://en.wikipedia.org/wiki/H-1B_visa}{(Wikipedia)}. 
+
+\begin{enumerate}
+  \item Data Acquisition
+  \begin{enumerate}
+  \item Before starting your scraper, check  the \texttt{robots.txt} file. Are there any restrictions to accessing/scraping these data?
+  \item Scrape data for the {\ul cities} of New York, Chicago, and Los Angeles, for the period 2017-2020. Be careful with name variations, you'll see some times ``New York'', appear as ``New York'', ``New York, NY'', or ``New York, New York''. Make sure you include all name variations. 
+  \end{enumerate}  
+  \item Clean and describe the data. Here I expect you to decide what to do with data with missing values, similar names, etc., be clear and honest in your description. There are no wrong answers.
+  \item Describe the number of applications filed  and average base salaries by cities and by years. (Aid your description with graphs, tables, and anything else that you deem necessary)
+  \item Rank firms by city and year according to the number of applications filed.
+\begin{enumerate}
+   \item Do the top 3 firms in terms of applications change over time? Do a little bit of research about the firms and the kind of work they do. Write very briefly about them (at most 3 lines). 
+   \item What is the average salary that they offer? 
+   \item Is there a particular job title that they are interested in?  
+ \end{enumerate}
+  \item Next, keep data for Chicago and the year 2019. 
+  \begin{enumerate}
+    \item Obtain and describe wages for each firm. (Be careful that same firms sometimes file under slight name variations. Aid your description with graphs, tables, and anything else that you deem necessary)
+    \item Let's assume that the wages for occupation $i$ and firm $j$ ($w_{ij}$) come from the following model
+    \begin{align}
+    w_{ij} &\sim_{iid} N(\mu_j,\sigma^2)
+    \end{align}
+    with prior
+    \begin{align}
+    \mu_j &\sim_{iid} N(\theta,\tau^2) 
+    \end{align}
+    \begin{enumerate}
+      \item What is the Empirical Bayes (EB) estimate of $\mu_j$? (you can assume $\sigma^2$ and $\tau^2$ known)
+      \item Take the EB estimate found previously to the wage data in this subsection. A problem that emerges is what to do with $\sigma^2$ and $\tau^2$. You have two routes; (i) use a sensible estimate from the literature, (ii)  use an unbiased estimate. Regardless of the route you choose, justify your election (\cite{casella1992illustrating} may help in your endeavors.)
+      \item Are the {\it Empirical Bayes} estimates shrunken towards the overall city mean: yes, no, why?
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\begin{thebibliography}{}
+
+\bibitem[Casella, 1992]{casella1992illustrating}
+Casella, G. (1992).
+\newblock Illustrating empirical bayes methods.
+\newblock {\em Chemometrics and intelligent laboratory systems},
+  16(2):107--125.
+
+\end{thebibliography}
+
+\end{document}
