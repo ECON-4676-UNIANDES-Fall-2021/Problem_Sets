@@ -148,7 +148,7 @@
   \begin{enumerate}
     \item Draw $\beta^s_2$ from the distribution with a density $p(\beta_2|Y, X, \beta^{s-1}_1)$
   \item Draw $\beta^s_1$ from the distribution with a density $p(\beta_1|Y, X, \beta^s_2)$.
-  \item Store $(\beta^s_1,\beta^s_2$. Go to step 1 with $s = s+1$ if $s < N$. Otherwise, ends the program.  
+  \item Store $(\beta^s_1,\beta^s_2)$. Go to step 1 with $s = s+1$ if $s < N$. Otherwise, ends the program.  
   \end{enumerate}
   At the end of this algorithm, you have a bunch of draws $[\beta^s_1,\beta^s_2]^N_{s=1}$. Compute a Monte Carlo approximation of E[ $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$  using generated draws. Let $N = 5,000$.
 \item  Compare approximated posterior moments of $\beta$ you obtained from the direct sampler (e) and the Gibbs sampler (f). Discuss the results.
