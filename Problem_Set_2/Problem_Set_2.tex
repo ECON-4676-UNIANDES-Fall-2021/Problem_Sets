@@ -138,11 +138,11 @@
       V=(X'X + \tau^{-2} I_2)^{-1}
       \end{align}
   
-  \item Derive the following conditional posterior distribution, $p(\beta_1|Y,X,\beta_1$ and $p(\beta_2|Y,X,\beta_1)$. Hint: Conditioned on $\beta_1$ we treat $\beta_1$ as known quantity. This means that we can transform the original model as
+  \item Derive the following conditional posterior distribution, $p(\beta_1|Y,X,\beta_2)$ and $p(\beta_2|Y,X,\beta_1)$. Hint: Conditioned on $\beta_1$ we treat $\beta_1$ as known quantity. This means that we can transform the original model as
   \begin{align}
     \underset{\tilde{y}_{i}}{\underbrace{y_{i}-\beta_{1}x_{i,1}}}=\underset{\tilde{\beta}_{2}}{\underbrace{\beta_{2}}}\underset{\tilde{x}_{i}}{\underbrace{x_{i,2}}}+u_{i}\iff\tilde{y}_{i}=\tilde{\beta}\tilde{x}_{i}+u
   \end{align}
-  \item Simulate a data set from the linear regression model with two regressors, Equation \eqref{eq:model}. Let $x_1,i\sim_{iid}N(0,1)$, $x_2,i\sim_{iid}N(0,3)$, $\beta_1=1$, $\beta_2=2$ , $N =200$ and $\tau= 4$
+  \item Simulate a data set from the linear regression model with two regressors, Equation \eqref{eq:model}. Let $x_{1,i}\sim_{iid}N(0,1)$, $x_{2,i}\sim_{iid}N(0,3)$, $\beta_1=1$, $\beta_2=2$ , $N =200$ and $\tau= 4$
   \item Now code up a direct sampler that generates $N$ draws from $N(m,V)$ where $m$ and $V$ are those defined above. Compute a Monte Carlo approximation of $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$ using the generated draws.
   \item Now code up a Gibbs sampler that generates N draws from the following algorithm. Enter the following iterations with $\beta^{0}_1=1$ and $s=1$
   \begin{enumerate}
