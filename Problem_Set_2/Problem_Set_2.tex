@@ -143,14 +143,14 @@
     \underset{\tilde{y}_{i}}{\underbrace{y_{i}-\beta_{1}x_{i,1}}}=\underset{\tilde{\beta}_{2}}{\underbrace{\beta_{2}}}\underset{\tilde{x}_{i}}{\underbrace{x_{i,2}}}+u_{i}\iff\tilde{y}_{i}=\tilde{\beta}\tilde{x}_{i}+u
   \end{align}
   \item Simulate a data set from the linear regression model with two regressors, Equation \eqref{eq:model}. Let $x_{1,i}\sim_{iid}N(0,1)$, $x_{2,i}\sim_{iid}N(0,3)$, $\beta_1=1$, $\beta_2=2$ , $N =200$ and $\tau= 4$
-  \item Now code up a direct sampler that generates $N$ draws from $N(m,V)$ where $m$ and $V$ are those defined above. Compute a Monte Carlo approximation of $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$ using the generated draws.
-  \item Now code up a Gibbs sampler that generates N draws from the following algorithm. Enter the following iterations with $\beta^{0}_1=1$ and $s=1$
+  \item Now code up a direct sampler that generates $S$ draws from $N(m,V)$ where $m$ and $V$ are those defined above. Compute a Monte Carlo approximation of $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$ using the generated draws.
+  \item Now code up a Gibbs sampler that generates S draws from the following algorithm. Enter the following iterations with $\beta^{0}_1=1$ and $s=1$
   \begin{enumerate}
     \item Draw $\beta^s_2$ from the distribution with a density $p(\beta_2|Y, X, \beta^{s-1}_1)$
   \item Draw $\beta^s_1$ from the distribution with a density $p(\beta_1|Y, X, \beta^s_2)$.
-  \item Store $(\beta^s_1,\beta^s_2)$. Go to step 1 with $s = s+1$ if $s < N$. Otherwise, ends the program.  
+  \item Store $(\beta^s_1,\beta^s_2)$. Go to step 1 with $s = s+1$ if $s < S$. Otherwise, ends the program.  
   \end{enumerate}
-  At the end of this algorithm, you have a bunch of draws $[\beta^s_1,\beta^s_2]^N_{s=1}$. Compute a Monte Carlo approximation of E[ $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$  using generated draws. Let $N = 5,000$.
+  At the end of this algorithm, you have a bunch of draws $[\beta^s_1,\beta^s_2]^S_{s=1}$. Compute a Monte Carlo approximation of E[ $E[\beta_i|Y, X]$, $E[\beta^2_i|Y, X]$, and $Corr(\beta_1, \beta_2)$  using generated draws. Let $S = 5,000$.
 \item  Compare approximated posterior moments of $\beta$ you obtained from the direct sampler (e) and the Gibbs sampler (f). Discuss the results.
 \item  Does your result change if you set $\beta^0_1= 20$ or$\beta^0_1= -20$ in (f)? That is, is the Gibbs sampler robust to the initial starting point in this exercise?
 \end{enumerate}
