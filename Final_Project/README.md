@@ -13,7 +13,7 @@ The repository should contain at least 4 folders:
 
 ## Some considerations: 
 
-- **Name your final documents attaching the folder's name to the exact name of the repository, separated by an underscore. Please place them in the corresponding folder.**. For example your {\it project proposal} will be in the folder "Documents/1_Proposal/1_Proposal-name-of-repo.pdf"
+- **Name your final documents attaching the folder's name to the exact name of the repository, separated by an underscore. Please place them in the corresponding folder.**. For example your *project proposal* will be in the folder "Documents/1_Proposal/1_Proposal-name-of-repo.pdf"
 - Please follow the Final Project Guidelines for each stage of the final project.
 - In your code, be sure to be clear, separating and commenting on each section.  Coding, like in writing, style is critical for readability.  If the code is well written, it should be self-contained. There is no need to write everything you did.  I encourage you to follow the [tidyverse style guide](https://style.tidyverse.org/)
 - Do not include  code in your document. If you want, you can have a link to your repository.
