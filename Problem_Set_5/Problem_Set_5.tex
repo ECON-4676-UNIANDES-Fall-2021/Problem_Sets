@@ -1,0 +1,168 @@
+\documentclass[12pt,onecolumn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          				PACKAGES  				              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin=1.5in]{geometry}
+\usepackage{authblk}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{placeins}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{a4wide,graphicx,color}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{color,soul}
+\usepackage{threeparttable}
+\usepackage[capposition=top]{floatrow}
+\usepackage[labelsep=period]{caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage[bottom]{footmisc}
+\setlength\footnotemargin{5pt}
+\usepackage{longtable}
+\usepackage{chronosys}
+\catcode`\@=11
+\def\chron@selectmonth#1{\ifcase#1\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi}
+
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+%% markup commands for code/software
+\let\code=\texttt
+\let\pkg=\textbf
+\let\proglang=\textsf
+\newcommand{\file}[1]{`\code{#1}'}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\urlstyle{same}
+
+%% paragraph formatting
+\renewcommand{\baselinestretch}{1}
+
+%% \usepackage{Sweave} is essentially
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ae,fancyvrb}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+
+% Defines columns for tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{bbm}
+\usepackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     			TITLE, AUTHORS AND DATE    			  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Problem Sets 5}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Econ 4676: Big Data and Machine Learning for Applied Economics}
+\author{{\bf Due Date}: There are two deadlines for this problem set. The usual deadline for the document is November 26 at 1:00 pm. The deadline for predictions is November 25 at 8:00 pm. }
+\date{}
+\date{The repo link to create your submission is \url{https://classroom.github.com/g/KThOe0YT}}
+
+\begin{document}
+\maketitle
+
+\section{Theory Exercises: Boosting and Text as Data}
+
+\begin{enumerate}
+  \item AdaBoost. In one of the last steps AdaBoost updates the following error function:
+   \begin{align}
+   L=\sum_{i=1}^N w^{(m)}_i exp\left(-\frac{1}{2}\alpha_m y_i G_m(x_i)\right)
+   \end{align}
+ show that if we differentiate that function with respect to $\alpha_m$, then ADABoost are updating using $\alpha_m=log(\frac{1-err_m}{err_m})$. 
+
+\item Consider a model where we count the number of words in a document. These words come from a fixed dictionary. We use a multinomial distribution to model this process
+
+\begin{align}
+f(X|\theta) = N! \Pi_{k=1}^K \frac{\theta_k^{N_k}}{N_k!}
+\end{align}
+
+where $\theta$ is the probability of $k-th$ word, $N_k$ is the number of times that word appears, K is the number of words in that dictionary, and $N=\sum_k N_k$, the sum of occurrences of all words.
+
+\begin{enumerate}
+  \item Adding the restriction that all probabilities must add to one ($\sum_k\theta_k=1$), derive the maximum likelihood estimator of $\theta$
+  \item Let's assume that the prior of $\theta$ follows a Dirichlet distribution ($\theta\sim Dir(\theta|\alpha _{1},\ldots ,\alpha _{K})$) where:
+  \begin{align}
+    Dir(\theta|\alpha _{1},\ldots ,\alpha _{K}) =\frac{1}{B(\alpha _{1},\ldots ,\alpha _{K})} \Pi_{k=1}^K \theta_k^{\alpha_k-1}
+  \end{align}
+
+ where $ B(\alpha _{1},\ldots ,\alpha _{K})=\frac{\pi _{i=1}^{K} \Gamma(\alpha _{i})}{\Gamma \left(\sum _{i=1}^{K}\alpha _{i}\right)}$. Find the posterior distribution. (Hint: Dirichlet distribution is a conjugate prior for the Multinomial distribution)
+
+  \item Find the posterior mode by maximizing the posterior likelihood function with respect to $\theta_k$, imposing the constrain  $\sum_k\theta_k=1$
+  \item Show that the above result under a uniform prior ($\alpha_k=1$), we get back the MLE estimator. 
+  \item Intuitively, what does it mean to impose a Uniform prior?
+\end{enumerate}
+\item PCA. In class, I showed that the solution for the first component is $\delta_1'\Sigma\delta_1=\lambda_1$. Now you have to find the second component, in a way that we sill want to further minimize the variance, but it has the following constrains $\delta_2'\delta_2=1$ and $\delta_2'\delta_1=0$.
+\begin{enumerate}
+  \item Intuitively explain the maximization problem and what each constrain means.
+  \item Show that the value of $\delta_2$ that minimizes the above problem is given by the eigenvector of $\Sigma$ with the largest eigenvalue.
+  \item Now let $\mathcal{L}(\delta_2,f_2)=\frac{1}{n}\sum_{i=1}^N(x_i-f_{i1}\delta_1-f_{i2}\delta_2)'(x_i-f_{i1}\delta_1-f_{i2}\delta_2)$. Show that $\frac{\partial \mathcal{L}}{ \partial \delta_2} =0$ implies that $f_{i2}=\delta_2'x_i$
+
+\end{enumerate}
+\end{enumerate}
+
+
+\section{Empirical Problem}
+
+
+
+The main objective of this section is to apply the concepts we learned using ``real" world data. With these, I also expect that you sharpen your data collection and wrangling skills. Finally, you should pay attention to your writing.
+
+I encourage you to turn the following section of the problem set in a way that resembles a paper. As such, I expect graphs, tables, and writing to be as neat as possible. You can write it in Spanish or English, and either language is acceptable. For students in the Ph.D., it would be a good practice to do it in English.
+
+Don't forget to upload everything to your repository and follow the template repository. 
+
+
+\subsection{{\it ``A rose by any other name would smell as sweet''} Juliet Capulet}
+
+There is an adage that says, {\it “choose your words carefully.”} Words themselves may reveal far more than what we’re trying to say. There’s mounting evidence that our written words show who we are.
+
+The objective today is to predict to whom each tweet belongs. The training dataset contains around 7,000 tweets of four prominent Colombian politicians' accounts: Claudia Lopez, Gustavo Petro, Alvaro Uribe, y Alejandro Gaviria. The test dataset contains 500 unlabeled tweets. We want to predict which account posted the tweets in the test set. All the relevant data sets are available in the \href{https://www.dropbox.com/s/gxmca5teygtxegi/data.zip?dl=0}{data.zip} file, available \href{https://www.dropbox.com/s/gxmca5teygtxegi/data.zip?dl=0}{here}.
+
+
+The expected output of this section are a document and a \texttt{.csv} file of predictions. 
+
+\begin{enumerate}
+  \item  The document should:
+  \begin{enumerate}
+    \item Describe how you prepossessed the data.
+    \item Present a descriptive/explanatory analysis of the data.
+    \item Describe in detail the model you used for your final prediction, for example, explain the hyper-parameters that you chose, how you got there, etc.  You can use any model that you want. The only restriction is that you have to use at least one model from the following classes: (1) bag-of-words representation, (2) language modelling (word2vec, BERT, etc.). You can find a Spanish corpus to use with word2vec \href{https://crscardellino.ar/SBWCE/}{here}, and the Spanish version of BERT, BETO, \href{https://github.com/dccuchile/beto}{here}.
+    \item Show the performance of that model relative to other models. Don't forget to mention what is your performance metric and argue why it was the model that you selected.
+    \item Besides writing up your results, you should submit a \texttt{.csv}. The submission file format is the variable \texttt{id}, and a \texttt{name} variable that indicates weather the tweet belongs to: Lopez, Gaviria, Petro, or Uribe. 
+  \end{enumerate}
+  \item Your grade will depend on your relative prediction accuracy. The best model will receive top marks, the others will be scaled accordingly.
+  
+\end{enumerate}
+
+
+
+
+
+
+
+\end{document}

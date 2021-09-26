@@ -1,0 +1,182 @@
+\documentclass[12pt,onecolumn,A4]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%          				PACKAGES  				              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[margin=1.5in]{geometry}
+\usepackage{authblk}
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{placeins}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{a4wide,graphicx,color}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage[table]{xcolor}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\usepackage{color,soul}
+\usepackage{threeparttable}
+\usepackage[capposition=top]{floatrow}
+\usepackage[labelsep=period]{caption}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{multicol}
+\usepackage[bottom]{footmisc}
+\setlength\footnotemargin{5pt}
+\usepackage{longtable}
+\usepackage{chronosys}
+\catcode`\@=11
+\def\chron@selectmonth#1{\ifcase#1\or Jan\or Feb\or Mar\or Apr\or May\or Jun\or Jul\or Aug\or Sep\or Oct\or Nov\or Dec\fi}
+
+%% BibTeX settings
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\bibpunct{(}{)}{,}{a}{,}{,}
+
+%% markup commands for code/software
+\let\code=\texttt
+\let\pkg=\textbf
+\let\proglang=\textsf
+\newcommand{\file}[1]{`\code{#1}'}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+\urlstyle{same}
+
+%% paragraph formatting
+\renewcommand{\baselinestretch}{1}
+
+%% \usepackage{Sweave} is essentially
+\RequirePackage[T1]{fontenc}
+\RequirePackage{ae,fancyvrb}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{}
+\DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+\newenvironment{Schunk}{}{}
+
+% Defines columns for tables
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\usepackage{bbm}
+\usepackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     			TITLE, AUTHORS AND DATE    			  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Problem Set 4}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Econ 4676: Big Data and Machine Learning for Applied Economics}
+\author{{\bf Due Date}: There are two deadlines for this problem set. The usual deadline for the document is November 5 at 1:00 pm. The deadline for predictions is November 4 at 8:00 pm. }
+\date{}
+\date{The repo link to create your submission is \url{https://classroom.github.com/g/Ky83zuit}}
+
+\begin{document}
+\maketitle
+
+\section{Theory Exercises}
+
+\begin{enumerate}
+  \item Consider the regression model $y_i = \alpha +\beta x_i +\epsilon, i=1,...,N$, a model with a constant and a single regressor. Assume that the classical assumptions hold. Let $\hat \alpha_N$ and $\hat \beta_N$ be the OLS estimators for $\alpha$ and $\beta$ respectively. Suppose that these N observations are your train set. You test set consist in one observation and you make a prediction $\hat y_{test}=\hat \alpha_N + \hat \beta_N x_{test}$. Show that $E(\hat y_{test}-y_{test})=0$ and $Var(\hat y_{test}-y_{test})=\sigma \left( 1+\frac{1}{N}+\frac{(x_{test}-\bar x)^2}{\sum_{i=1}^N (x_i-\bar x)^2 }\right)$
+  
+  
+  
+  
+  \item Consider the regression model $y_i =  \beta x_i +\epsilon, i=1,...,N$, that is a model with only one regressor and {\bf no} intercept. Moreover, $x_i$ has been standardized to have mean zero and variance one. All the classical assumptions hold and $x_i$ is fixed ($x_i$ is a non random variable. Consider estimating $\hat \beta^r= \frac{\hat \beta^{OLS}}{1+\gamma}$ where $\hat \beta^{OLS}$ is the OLS estimator and $\gamma$ is a positive scalar. This is known as the ridge estimator.
+  \begin{enumerate}
+    \item Calculate the bias and the variance of $\hat \beta^r$,for a fixed $\gamma$. Compare it to the bias and variance of the OLS estimator
+    \item Calculate the MSE and compare it to the MSE of the OLS estimator. Show that there is a $\gamma$ for which $MSE(\hat \beta^r)<MSE(\hat \beta)$
+    \item What conclusion can you take with respect of the classical econometric practice of strictly preferring unbiased estimators?
+
+\end{enumerate}  
+
+ 
+
+
+
+\item Consider the regression model $y=X\beta +\epsilon$ with $\epsilon\sim N(0,\sigma^2I)$ furthermore assume that $\beta$ has a normal prior, i.e. $\beta\sim N(0,\tau^2I)$. 
+\begin{enumerate}
+    \item Find the posterior distribution. 
+    \item Compare it to Ridge.
+    \item What is the relationship between $\lambda$ in the ridge model and $\sigma^2$ and $\tau^2$?
+    \item Intuitively which prior would you choose to get Lasso?
+\end{enumerate}
+
+
+  \item {\it LDA vs QDA}. I showed in class where the term ``linear'' comes from LDA. However, I skipped steps in the lecture. 
+  \begin{enumerate}
+    \item Show the complete steps from odds ratio and equal variance assumption that allows reaching a linear function for the odds ratio. 
+    \item Lift the equal variance assumption, and show that you reach a quadratic function. 
+    \item Generate some simulated data and plot the decision boundaries for both classifiers. 
+  \end{enumerate}
+ 
+\end{enumerate}
+
+
+\section{Empirical Problem}
+
+The main objective of this section is to apply the concepts we learned using ``real" world data. With these, I also expect that you sharpen your data collection and wrangling skills. Finally, you should pay attention to your writing.
+
+I encourage you to turn the following section of the problem set in a way that resembles a paper. As such, I expect graphs, tables, and writing to be as neat as possible. You can write it in Spanish or English, and either language is acceptable. For students in the Ph.D., it would be a good practice to do it in English.
+
+Don't forget to upload everything to your repository and follow the template repository. 
+
+
+\subsection{{\it ``Wars of nations are fought to change maps. But wars of poverty are fought to map change''} M. Ali}
+
+This section was inspired by a recent competition hosted by the world bank: \href{https://www.drivendata.org/competitions/50/worldbank-poverty-prediction/page/97/}{Pover-T Tests: Predicting Poverty}. The idea is to predict poverty in Colombia. As the competition states {\it ``measuring poverty is hard, time consuming, and expensive. By building better models, we can run surveys with fewer, more targeted questions that rapidly and cheaply measure the effectiveness of new policies and interventions. The more accurate our models, the more accurately we can target interventions and iterate on policies, maximizing the impact and cost-effectiveness of these strategies.''} Today this is our objective.
+
+Predictions have to be made at the household level only. Data, however, are provided at the household and individual levels. You can use individual-level information to build extra variables to improve your prediction. You can use the variable \texttt{id} to merge households with individuals. 
+
+
+The \href{https://www.dropbox.com/s/gxmca5teygtxegi/data.zip?dl=0}{data.zip} file contains four data sets. Training and testing data sets at the household and the individual level. You will note that some variables are missing in the testing data sets. This is by design,to make things a bit more challenging. The file is available \href{https://www.dropbox.com/s/gxmca5teygtxegi/data.zip?dl=0}{here}. 
+
+A document describing the variables is available in the data folder. You can also check them on the  \href{http://microdatos.dane.gov.co/index.php/catalog/608/datafile/F1#page=F2&tab=data-dictionary}{DANE website}.
+
+
+Note that a household is classified as $Poor=I(Inc<Pl)$, if the family income is below a certain poverty line. This suggests two ways to go about predicting poverty. First, approach it as a classification problem: predict zeros (no poor), and ones (poor). Second, as an income prediction problem. With the predicted income you can use the poverty line and get the classification. Whatever route you choose, describe in detail what you did, and the model you used for your final prediction. 
+
+An important dimension for policy makers is that it can be {\it rapidly and cheaply measured}. In building your model aim to have a model that uses the minimum amount of variables. 
+
+
+The expected output of this section are a document and a \texttt{.csv} file of predictions. The document should
+
+
+\begin{enumerate}
+	\item Describe the data and any "cleaning" or transformation that you've done. You are free to add external data, but you have to explain why, and how you are using it. 
+	\item Explain in detail the final model chosen, how it was trained, the selection of hyper-parameters, and any other relevant information about the model. 
+  \item Describe the variables that you used in the model and a measure of their relative importance in the prediction. 
+  \item Include comparisons to at least 5 other models. You can compare them in terms of ROC, AUC, False Positives, or False Negatives.
+  
+	\end{enumerate}
+Besides writing up your results, you should submit a \texttt{.csv}.
+  \begin{itemize}
+   \item The submission file format is the variable id, and a 0-1 poor prediction, where 1 denotes poor, and 0 otherwise. An example of how the submission file should look like is in the data folder. 
+   
+   \item I will judge predictions based on false-positive rates, false-negative rates, and the model's sparsity. More weight (75\%) will be given to false-negatives, i.e. poor families classified as non poor.
+   \item On the file name please include the number of variables that you used for prediction, e.g., \texttt{predictions-problem\_set\_4\_sarmiento-cano-4.csv}, where \texttt{4} indicates the number of variables in your final model. The more variables you use, the lower your score.
+   \item On presentation day, I will announce the ``winning'' team, which will present first and get extra credit. 
+
+   \end{itemize}
+
+
+
+
+
+
+
+
+
+\end{document}
