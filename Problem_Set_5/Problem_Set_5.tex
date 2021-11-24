@@ -120,7 +120,7 @@ where $\theta$ is the probability of $k-th$ word, $N_k$ is the number of times t
 \begin{enumerate}
   \item Intuitively explain the maximization problem and what each constrain means.
   \item Show that the value of $\delta_2$ that minimizes the above problem is given by the eigenvector of $\Sigma$ with the largest eigenvalue.
-  \item Now let $\mathcal{L}(\delta_2,f_2)=\frac{1}{n}\sum_{i=1}^N(x_i-f_{i1}\delta_1-f_{i2}\delta_2)'(x_i-f_{i1}\delta_1-f_{i2}\delta_2)$. Show that $\frac{\partial \mathcal{L}}{ \partial \delta_2} =0$ implies that $f_{i2}=\delta_2'x_i$
+  \item Now let $\mathcal{L}(\delta_2,f_2)=\frac{1}{n}\sum_{i=1}^N(x_i-f_{i1}\delta_1-f_{i2}\delta_2)'(x_i-f_{i1}\delta_1-f_{i2}\delta_2)$. Show that $\frac{\partial \mathcal{L}}{ \partial f_{i2}} =0$ implies that $f_{i2}=\delta_2'x_i$
 
 \end{enumerate}
 \end{enumerate}
@@ -154,6 +154,7 @@ The expected output of this section are a document and a \texttt{.csv} file of p
     \item Describe in detail the model you used for your final prediction, for example, explain the hyper-parameters that you chose, how you got there, etc.  You can use any model that you want. The only restriction is that you have to use at least one model from the following classes: (1) bag-of-words representation, (2) language modelling (word2vec, BERT, etc.). You can find a Spanish corpus to use with word2vec \href{https://crscardellino.ar/SBWCE/}{here}, and the Spanish version of BERT, BETO, \href{https://github.com/dccuchile/beto}{here}.
     \item Show the performance of that model relative to other models. Don't forget to mention what is your performance metric and argue why it was the model that you selected.
     \item Besides writing up your results, you should submit a \texttt{.csv}. The submission file format is the variable \texttt{id}, and a \texttt{name} variable that indicates whether the tweet belongs to: Lopez, Gaviria, Petro, or Uribe. 
+    \item Please name you prediction file with the followign convention: \texttt{predictions-problem\_set\_5\_group-names.csv}, and put it in the \texttt{stores} folder
   \end{enumerate}
   \item Your grade will depend on your relative prediction accuracy. The best model will receive top marks, the others will be scaled accordingly.
   
